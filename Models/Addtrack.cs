@@ -12,8 +12,8 @@ namespace An_e_commerce_app.Models
 
         public string? trackdescription { get; set; }
         public string? releasedate { get; set; }
-        public string? trackid { get; set; }
+       
+        public trackcategory? Trackcategory { get; set; }
 
-        public trackcategory Trackcategory { get; set; }
     }
 }
