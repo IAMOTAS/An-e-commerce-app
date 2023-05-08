@@ -1,4 +1,5 @@
 ﻿using An_e_commerce_app.Data;
+using Microsoft.EntityFrameworkCore;
 
 public class Startup
 {
@@ -14,7 +15,7 @@ public class Startup
     {
         services.AddRazorPages();
         //DbContext configuration
-        services.AddDbContext<AppDbContext>();
+        services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
     }
     public void Configure(WebApplication app, IWebHostEnvironment env)
     {
@@ -30,5 +31,9 @@ public class Startup
         app.UseAuthorization();
         app.MapRazorPages();
         app.Run();
+    }
+
+    private class Configuration
+    {
     }
 }

@@ -6,10 +6,14 @@ namespace An_e_commerce_app.Models
     {
         [Key]
         public int Id { get; set; }
-        public string? profilepictureURL { get; set; }
+        public string artistpictureURL { get; set; }
 
-        public string? artistname { get; set; }
+        public string artistname { get; set; }
 
-        public string? yearproduced { get; set; }
+        public string artistdescription { get; set; }
+
+        //Relationships
+        public List<Track> Track { get; set; }
+
     }
 }
