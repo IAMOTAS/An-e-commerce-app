@@ -20,14 +20,27 @@ namespace An_e_commerce_app.Data
             });
             modelBuilder.Entity<artist_Track>().HasOne(a => a.track).WithMany(aa => aa.trackcategoryAddtracks).HasForeignkey(artist => a.trackcategoryid);
             modelBuilder.Entity<artist_Track>()
-                        .HasOne(a =>
+                        .HasOne(a=>
                         {
-                            return a.track;
+                            return NewMethod1(a);
                         })
-                        .WithMany(aa => aa.trackcategoryAddtracks)
+                        .WithMany(aa =>
+                        {
+                            return aa.trackcategoryAddtracks;
+                        })
                         .HasForeignkey(artist => a.Addtrackid);
 
             base.OnModelCreating(modelBuilder);
+
+            static object NewMethod(artist_Track a)
+            {
+                return a.track;
+            }
+
+            static object NewMethod1(artist_Track a)
+            {
+                return NewMethod(a);
+            }
         }
         public DbSet<artist> artists { get; set; }
         public DbSet<Track> Track { get; set; }

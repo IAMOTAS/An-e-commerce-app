@@ -1,5 +1,6 @@
 ﻿using An_e_commerce_app.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 public class Startup
 {
@@ -15,7 +16,10 @@ public class Startup
     {
         services.AddRazorPages();
         //DbContext configuration
-        services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+        services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlServer(Configuration.GetConnectionStrings("DefaultConnectionString"));
+        });
     }
     public void Configure(WebApplication app, IWebHostEnvironment env)
     {
@@ -35,5 +39,9 @@ public class Startup
 
     private class Configuration
     {
+        internal static Action<SqlServerDbContextOptionsBuilder>? GetConnectionStrings(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
